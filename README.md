@@ -11,6 +11,8 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 2. **Create a Virtual Network** - Ensures connectivity for the lab.
 3. **Deploy a Virtual Machine (VM)** - Using Windows 10 for my target system, however feel free to choose whichever setup you would like.
 
+### Initial Environment:
+![Initial Environment](images/initialenvironment.png)
 
 
 
@@ -25,6 +27,21 @@ This lab provides a practical way to observe live attack patterns, analyze secur
    - Ping the VM from your local machine to confirm it's reachable.
 
 
+### Initial Connection Using RDP:
+![RDP](images/initialRDP.png)
+
+
+### Firewall Status of ON:
+![FirewallsOn](images/firewallson.png)
+
+
+### Disabling Each Part of Windows Firewall:
+![FirewallOff1](images/firewallsoff1.png)
+![FirewallOff2](images/firewallsoff2.png)
+![FirewallOff3](images/firewallsoff3.png)
+![FirewallOff4](images/firewallsoff4.png)
+
+
 
 
 # Step 3: Enable Logging & Forwarding Data
@@ -32,10 +49,21 @@ This lab provides a practical way to observe live attack patterns, analyze secur
    - Attempt incorrect login credentials to generate failed login logs.
    - Open Event Viewer - Navigate to Security Attempts
    - Locate Event ID 4625 (*failed login attempts*)
-2. Create Log Analytics Workspace:
+2. Create LAW(Log Analytics Workspace):
    - This serves as the central repository for security logs.
 
 
+### Event Viewer For Failed Login Attempts:
+![Eventviewerimage](images/eventviewermyfailedlogin.png)
+
+
+### Event Viewer 4625:
+![4625](images/myfailedlogindetail.png)
+
+
+
+### LAW Creation
+![LAW](images/LAWcreation.png)
 
 
 # Step 4: Deploying Microsoft Sentienel (SIEM)
@@ -46,6 +74,12 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 3. **Wait for Log Collection:**
    - Logs may take 1-2 hours to populate.
 
+### Initial Failed Login Attempts via Microsoft Sentienel
+![logs1](images/attacklogs1.png)
+![logs2](images/attacklogs2.png)
+![logs3](images/attacklogs3.png)
+
+
 
 
 
@@ -53,22 +87,27 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 1. **Analyze Failed Login Attempts:**
    - Multiple failed login attempts observed from different username (`Admin`, `Administrator`, `usuario`, `Cuentas`)
    - All the initial login attempts originated from the same IP address, indicating a brute-force attack likely from an automated script.
-2. **Monitor Ongoing attacks:**
-   - Even after initial observation, continuous login attempts were detected from the same attacker, and different attackers.
-
+2. **Querying Security Events for Failed Logins:**
+   - To identify failed login attempts (*Event ID 4625*) use the following KQL query in Microsoft Sentienel:
+   - `kql
+SecurityEvent
+| where EventID == 4625`
 
 
 # Step 6: Enriching Logs with Geolocation Data
 1. **Create a Watchlist in Microsoft Sentinel:**
    - Upload a GeoIP file to map attacker IP addresses to geographic locations.
    - File used: [geoip-summarized.csv](https://github.com/user-attachments/files/20694215/geoip-summarized.csv)
-2. **Query Logs with Geolocation Data:**
+2. **Query Logs using KQL with Geolocation Data:**
    - `let GeoIPDB_FULL = _GetWatchlist("geoip");
 let WindowsEvents = SecurityEvent
     | where EventId == 4625
     | evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network);
 WindowsEvents`
 
+
+### Watchlist Creation:
+![watchlist](images/watchlistcreation.png)
 
 
 
@@ -111,6 +150,14 @@ WindowsEvents`
 `
 3. **Observe the attack map, showing where login attempts originate.**
 
+
+
+### Initial Attack Map ~2 Hours:
+![Attack Map](images/mapdataog.png)
+
+
+### Attack Map After ~24 Hours:
+![Attack Map 24h](images/mapdataovernight.png)
 
 
 
