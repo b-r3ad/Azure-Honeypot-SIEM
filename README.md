@@ -167,4 +167,4 @@ WindowsEvents`
 
 
 # Resources used:
-- Josh Madakor - Cyber Home Lab from Zero and Catch Attackers. YouTube
+- [Josh Madakor - Cyber Home Lab from Zero and Catch Attackers.](https://youtu.be/g5JL2RIbThM?si=lBckMrzOO6zGOXun)
