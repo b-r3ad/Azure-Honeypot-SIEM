@@ -1,5 +1,5 @@
 # Overview
-This repository contains a step-by-step Honeypot lab designed to simulate attacker behavior and collect real-world security logs using Azure VM's Log Analytics Workspace and Microsoft Sentinel.
+This repository contains a step-by-step honeypot lab designed to simulate attacker behavior and collect real-world security logs using Azure VM's Log Analytics Workspace and Microsoft Sentinel.
 
 By exposing a vulnerable system to the Internet, this lab captures actual attack attempts, including failed login attempts and geographic data of the attackers. The collected logs are then analyzed using KQL queries, enriched with GeoIP data, and visualized in Sentinel Workbooks to create an interactive attack map.
 
@@ -9,7 +9,7 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 # Step 1: Create the Lab Environment:
 1. **Create a Resource Group** - Named 'SOC-Lab' for this setup.
 2. **Create a Virtual Network** - Ensures connectivity for the lab.
-3. **Deploy a Virtual Machine (VM)** - Using Windows 10 for my target system, however feel free to choose whichever setup you would like.
+3. **Deploy a Virtual Machine (VM)** - Using Windows 10 for the target system; however, feel free to choose whichever setup you'd like.
 
 ### Initial Environment:
 ![Initial Environment](images/initialenvironment.png)
@@ -18,11 +18,11 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 
 # Step 2: Configuring the Honeypot (*Removing Security Controls*)
 1. **Modify Network Security Group (NSG):**
-  - By default, RDP (Remote Desktop Protocol) is the only allowed inbound connection.
-  - Delete the default RDP rule and allow all inbound traffic to attract attackers.
+   - By default, RDP (Remote Desktop Protocol) is the only allowed inbound connection.
+   - Delete the default RDP rule and allow all inbound traffic to attract attackers.
 2. **Disable Windows Firewall:**
    - Use RDP to access the VM.
-   - Open `wf.msc`, Set all firewall properties to Off.
+   - Open `wf.msc`, and set all firewall properties to Off.
 3. **Verify External Reachability:**
    - Ping the VM from your local machine to confirm it's reachable.
 
@@ -31,7 +31,7 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 ![RDP](images/initialRDP.png)
 
 
-### Firewall Status of ON:
+### Firewall Status ON:
 ![FirewallsOn](images/firewallson.png)
 
 
@@ -47,13 +47,13 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 # Step 3: Enable Logging & Forwarding Data
 1. **Verify Local Logging:**
    - Attempt incorrect login credentials to generate failed login logs.
-   - Open Event Viewer - Navigate to Security Attempts
+   - Open Event Viewer - Navigate to Security events.
    - Locate Event ID 4625 (*failed login attempts*)
-2. Create LAW(Log Analytics Workspace):
+2. **Create LAW (Log Analytics Workspace):**
    - This serves as the central repository for security logs.
 
 
-### Event Viewer For Failed Login Attempts:
+### Event Viewer for Failed Login Attempts:
 ![Eventviewerimage](images/eventviewermyfailedlogin.png)
 
 
@@ -66,15 +66,15 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 ![LAW](images/LAWcreation.png)
 
 
-# Step 4: Deploying Microsoft Sentienel (SIEM)
-1. **Create a Sentinel Instance - Azure's Security Information and Event Management (SIEM) tool.**
+# Step 4: Deploying Microsoft Sentinel (SIEM)
+1. **Create a Sentinel Instance** - Azure's Security Information and Event Management (SIEM) tool.
 2. **Install Windows Security Events Connector:**
-   - Select Windows Security Events via AMA (Azure Montoring Agent).
+   - Select Windows Security Events via AMA (Azure Monitoring Agent).
    - Create a Data Collection Rule (DCR) to forward logs.
 3. **Wait for Log Collection:**
-   - Logs may take 1-2 hours to populate.
+   - Logs may take 1–2 hours to populate.
 
-### Initial Failed Login Attempts via Microsoft Sentienel
+### Initial Failed Login Attempts via Microsoft Sentinel
 ![logs1](images/attacklogs1.png)
 ![logs2](images/attacklogs2.png)
 ![logs3](images/attacklogs3.png)
@@ -85,10 +85,10 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 
 # Step 5: Observing Real Attacks
 1. **Analyze Failed Login Attempts:**
-   - Multiple failed login attempts observed from different username (`Admin`, `Administrator`, `usuario`, `Cuentas`)
-   - All the initial login attempts originated from the same IP address, indicating a brute-force attack likely from an automated script.
+   - Multiple failed login attempts observed from different usernames (`Admin`, `Administrator`, `usuario`, `Cuentas`)
+   - All the initial login attempts originated from the same IP address, indicating a brute force attack, likely from an automated script.
 2. **Querying Security Events for Failed Logins:**
-   - To identify failed login attempts (*Event ID 4625*) use the following KQL query in Microsoft Sentienel:
+   - To identify failed login attempts (*Event ID 4625*) use the following KQL query in Microsoft Sentinel:
    - `kql
 SecurityEvent
 | where EventID == 4625`
@@ -162,9 +162,9 @@ WindowsEvents`
 
 
 # Real-World Application
-   - **Threat Intelligence** - Observe live attack attempts from real-world adversaries
-   - **Log Analysis Practice** - Gain hands-on experince with KQL queries and SIEM operations
+   - **Threat Intelligence** – Observe live attack attempts from real-world adversaries
+   - **Log Analysis Practice** – Gain hands-on experience with KQL queries and SIEM operations
 
 
 # Resources used:
-- Josh Madakor - Cyber Home Lab from Zero and Catch Attackers. Youtube
+- Josh Madakor - Cyber Home Lab from Zero and Catch Attackers. YouTube
