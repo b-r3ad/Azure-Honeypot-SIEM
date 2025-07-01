@@ -175,6 +175,25 @@ WindowsEvents`
    - **Log Analysis Practice** – Gain hands-on experience with KQL queries and SIEM operations
 
 
+
+# **Lab Teardown** (*Optional, but Highly Recommended*):
+- Azure resources don't delete themselves, to avoid any unnecessary charges be sure to properly shutdown/delete the resources.
+1. **Delete the VM:**
+   - Navigate to the Virtual Machines section and select your VM, then click delete.
+   - Be sure to delete the associated resources like the OS disk and public IP address.
+2. **Delete Resource Group:** 
+   - If all lab resources are contained within a single group, then deleting the group will remove everything else.
+   - From Azure Portal, go to Resource Groups, select it, and click **Delete Resource Group**
+3. **Remove Log Analytics Workspace:**
+   - Same steps as before, go to your LAW, select it, and delete it
+4. **Delete Microsoft Sentinel:**
+   - Finally, ensure that Sentinel is deleted; deleting the workspace should remove the Sentinel instance but it's always good to check there's no lingering connections.
+
+
+### Last Note:
+- Final note, if you would like to setup a way to automate this process in the future, consider checking out my [ARM Folder](https://github.com/b-r3ad/Azure-Honeypot-SIEM/blob/main/ARM)
+
+
 # Resources used:
 - [Josh Madakor - Cyber Home Lab from Zero and Catch Attackers.](https://youtu.be/g5JL2RIbThM?si=lBckMrzOO6zGOXun)
 
