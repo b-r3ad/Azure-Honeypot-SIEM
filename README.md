@@ -191,13 +191,10 @@ WindowsEvents`
 
 
 ### Last Note:
-- Final note, if you would like to setup a way to automate this process in the future, consider checking out my [ARM Folder](https://github.com/b-r3ad/Azure-Honeypot-SIEM/blob/main/ARM)
+- Final note, if you would like to setup a way to automate this process in the future, consider checking out my [ARM Folder](https://github.com/b-r3ad/Azure-Honeypot-SIEM/blob/main/Creating-ARM-template.md)
 
 
 # Resources used:
 - [Josh Madakor - Cyber Home Lab from Zero and Catch Attackers.](https://youtu.be/g5JL2RIbThM?si=lBckMrzOO6zGOXun)
 
 
-# Contributing to this repo:
-- Feel free to fork this repo, pull requests are also welcome.
-- Please open an issue in this repo [Azure-Honeypot-SIEM](https://github.com/b-r3ad/Azure-Honeypot-SIEM/issues)
