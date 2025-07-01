@@ -86,7 +86,7 @@
                 "1"
             ],
             "properties": {
-                "ipAddress": "20.51.195.121",
+                "ipAddress": "X.X.X.X",
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Static",
                 "idleTimeoutInMinutes": 4,
