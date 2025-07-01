@@ -6,6 +6,11 @@ By exposing a vulnerable system to the Internet, this lab captures actual attack
 This lab provides a practical way to observe live attack patterns, analyze security events, and gain insights into attacker behavior using real-world data.
 
 
+# Prerequisites:
+- This can be completed 100% free if it's your first time making a Azure account, sign up [here](https://azure.microsoft.com/en-in/pricing/purchase-options/azure-account).
+- Tip! I used a temporary card from privacy.com to avoid any accidental charges, as you do need to link a debit/credit card. However, when creating your first account you will receive a $200 credit (*expires in 30 days*).
+- The account creation is a fairly simple process, you will just need a Microsoft and or Google account.
+
 # Step 1: Create the Lab Environment:
 1. **Create a Resource Group** - Named 'SOC-Lab' for this setup.
 2. **Create a Virtual Network** - Ensures connectivity for the lab.
@@ -37,9 +42,13 @@ This lab provides a practical way to observe live attack patterns, analyze secur
 
 ### Disabling Each Part of Windows Firewall:
 ![FirewallOff1](images/firewallsoff1.png)
+---
 ![FirewallOff2](images/firewallsoff2.png)
+---
 ![FirewallOff3](images/firewallsoff3.png)
+---
 ![FirewallOff4](images/firewallsoff4.png)
+---
 
 
 
@@ -168,3 +177,8 @@ WindowsEvents`
 
 # Resources used:
 - [Josh Madakor - Cyber Home Lab from Zero and Catch Attackers.](https://youtu.be/g5JL2RIbThM?si=lBckMrzOO6zGOXun)
+
+
+# Contributing to this repo:
+- Feel free to fork this repo, pull requests are also welcome.
+- Please open an issue in this repo [Azure-Honeypot-SIEM](https://github.com/b-r3ad/Azure-Honeypot-SIEM/issues)
